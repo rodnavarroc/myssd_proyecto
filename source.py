@@ -11,16 +11,14 @@ from PySide2.QtWidgets import QApplication, QDialog
 from PySide2.QtCore import QFile
 
 kernel32 = ctypes.WinDLL('kernel32')
-
 user32 = ctypes.WinDLL('user32')
-
 SW_HIDE = 0
-
 hWnd = kernel32.GetConsoleWindow()
 user32.ShowWindow(hWnd, SW_HIDE)
 
 root = Tk()
 root.geometry("250x200")
+root.title("Simulacion")
 canvas = Canvas(root, width=250, height=200)
 Label(root,text=" ").pack()
 l0 = StringVar()
@@ -41,25 +39,34 @@ cajon = []
 global i
 i = 0
 
-cajon.append(canvas.create_rectangle(75, 50, 85,  60, fill='green'))
-cajon.append(canvas.create_rectangle(95, 50, 105, 60, fill='green'))
-cajon.append(canvas.create_rectangle(115, 50, 125, 60, fill='green'))
-cajon.append(canvas.create_rectangle(135, 50, 145, 60, fill='green'))
-cajon.append(canvas.create_rectangle(155, 50, 165, 60, fill='green'))
-cajon.append(canvas.create_rectangle(175, 50, 185, 60, fill='green'))
+cajon.append(canvas.create_rectangle(77, 40, 87,  65, fill='green'))
+cajon.append(canvas.create_rectangle(97, 40, 107, 65, fill='green'))
+cajon.append(canvas.create_rectangle(117, 40, 127, 65, fill='green'))
+cajon.append(canvas.create_rectangle(137, 40, 147, 65, fill='green'))
+cajon.append(canvas.create_rectangle(157, 40, 167, 65, fill='green'))
+cajon.append(canvas.create_rectangle(177, 40, 187, 65, fill='green'))
+
+canvas.create_rectangle(70, 30, 73,  70, fill='black')
+canvas.create_rectangle(90, 30, 93,  70, fill='black')
+canvas.create_rectangle(110, 30, 113,  70, fill='black')
+canvas.create_rectangle(130, 30, 133,  70, fill='black')
+canvas.create_rectangle(150, 30, 153,  70, fill='black')
+canvas.create_rectangle(170, 30, 173,  70, fill='black')
+canvas.create_rectangle(190, 30, 193,  70, fill='black')
+canvas.create_rectangle(70, 70, 193,  73, fill='black')
 
 def renueva_carros():
 	
 	global i
 	
-	txtHora = "Hora #{0}".format(i+1)
+	txtHora = "Horas: \t\t{0}".format(i+1)
 	
 	if(ncarros[i] > 6):
-		txtSeFueron = "Se fueron: {0}".format(ncarros[i] - 6)
+		txtSeFueron = "Se fueron: \t{0}".format(ncarros[i] - 6)
 	if(ncarros[i] <= 6):
-		txtSeFueron = "Se fueron: 0"
+		txtSeFueron = "Se fueron: \t0"
 
-	txtTiempoEstadia = "Tiempo de estadia promedio: {0} minutos".format(round(tpromedio[i]))
+	txtTiempoEstadia = "Tiempo de estadía: \t{0} minutos".format(round(tpromedio[i]))
 	l0.set(txtHora)
 	l1.set(txtSeFueron)
 	l2.set(txtTiempoEstadia)

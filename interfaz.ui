@@ -2,6 +2,12 @@
 <ui version="4.0">
  <class>SimulacionDeEstacionamiento</class>
  <widget class="QMainWindow" name="SimulacionDeEstacionamiento">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,13 +17,16 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Simulacion De Estacionamiento</string>
+   <string>Simulacion de Estacionamiento</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>120</x>
       <y>190</y>
       <width>111</width>
       <height>23</height>
@@ -47,13 +56,13 @@
      </rect>
     </property>
     <property name="text">
-     <string>Media estadistica:</string>
+     <string>Media estadística:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>80</x>
       <y>20</y>
       <width>191</width>
       <height>16</height>
@@ -96,7 +105,7 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>110</x>
       <y>120</y>
       <width>131</width>
       <height>16</height>
@@ -109,7 +118,7 @@
    <widget class="QLineEdit" name="lineEdit_3">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>110</x>
       <y>150</y>
       <width>51</width>
       <height>20</height>
@@ -119,7 +128,7 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>70</x>
       <y>150</y>
       <width>31</width>
       <height>16</height>
@@ -132,7 +141,7 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>170</x>
       <y>150</y>
       <width>21</width>
       <height>16</height>
@@ -145,7 +154,7 @@
    <widget class="QLineEdit" name="lineEdit_4">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>190</x>
       <y>150</y>
       <width>51</width>
       <height>20</height>
