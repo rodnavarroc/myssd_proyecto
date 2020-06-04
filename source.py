@@ -17,9 +17,9 @@ hWnd = kernel32.GetConsoleWindow()
 user32.ShowWindow(hWnd, SW_HIDE)
 
 root = Tk()
-root.geometry("250x200")
+root.geometry("300x200")
 root.title("Simulacion")
-canvas = Canvas(root, width=250, height=200)
+canvas = Canvas(root, width=300, height=200)
 Label(root,text=" ").pack()
 l0 = StringVar()
 l1 = StringVar()
@@ -63,7 +63,7 @@ def renueva_carros():
 	global i
 	global sumPerdida, sumPromedioDisponible
 	
-	txtHora = "Horas: \t\t{0}".format(i+1)
+	txtHora = "Hora: \t\t{0}".format(i+1)
 	
 	if(ncarros[i] > 6):
 		txtSeFueron = "Se fueron: \t{0}".format(ncarros[i] - 6)
@@ -72,7 +72,7 @@ def renueva_carros():
 		txtSeFueron = "Se fueron: \t0".format()
 		sumPromedioDisponible += (6-ncarros[i])/6
 
-	txtTiempoEstadia = "Tiempo de estadía: \t{0} minutos".format(round(tpromedio[i]))
+	txtTiempoEstadia = "Estadía promedio: \t{0} minutos".format(round(tpromedio[i]))
 	
 	l0.set(txtHora)
 	l1.set(txtSeFueron)
@@ -101,9 +101,9 @@ def renueva_carros():
 		probabilidadDisponible = (((dt-sumPerdida)/dt)*100)
 		promedioDisponible = ((sumPromedioDisponible/N)*100)
 
-		txtHora = "Clientes perdidos: {0}%".format(round(porcentajeClientesPerdidos,2))
-		txtSeFueron = "Lugares disponibles: {0}%".format(round(probabilidadDisponible,2))
-		txtTiempoEstadia = "Promedio de lugares disponibles: {0}%".format(round(promedioDisponible,2))
+		txtHora = "Porcentaje total de clientes perdidos: {0}%".format(round(porcentajeClientesPerdidos,2))
+		txtSeFueron = "Probabilidad de encontrar lugar: {0}%".format(round(probabilidadDisponible,2))
+		txtTiempoEstadia = "Porcentaje promedio de espacios disponibles: {0}%".format(round(promedioDisponible,2))
 
 		l0.set(txtHora)
 		l1.set(txtSeFueron)
