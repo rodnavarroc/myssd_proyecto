@@ -79,20 +79,20 @@ def renueva_carros():
 	l2.set(txtTiempoEstadia)
 	
 	time.sleep(1)
-	
+
 	for x in range(0,6):
 		canvas.itemconfigure(cajon[x], fill='white');
 	
 	time.sleep(1)
-	
-	for x in range(0,ncarros[i]):
+
+	for x in range(0,ncarros[i+1]):
 		if(x >= 6):
 			break
 		canvas.itemconfigure(cajon[x], fill='red');
-	
+
 	i = i+1
 
-	if(i != int(horas_activo)):
+	if(i != int(horas_activo)-1):
 		renueva_carros()
 	else:
 		global porcentajeClientesPerdidos, probabilidadDisponible, promedioDisponible
@@ -125,6 +125,7 @@ class SimulacionDeEstacionamiento ():
 		horas_activo = self.ui.lineEdit_2.text()
 		min_act = self.ui.lineEdit_3.text()
 		max_act = self.ui.lineEdit_4.text()
+		horas_activo = int(horas_activo)+1
 		myapp.ui.close()
 		self.ejecutarPrograma()
 
