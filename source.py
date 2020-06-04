@@ -29,15 +29,18 @@ Label(root,textvariable=l0).pack()
 Label(root,textvariable=l1).pack()
 Label(root,textvariable=l2).pack()
 
-#l0.set("Hora #")
-#l1.set("Se fueron: ")
-#l2.set("Tiempo de estadia: ")
-
 canvas.pack()
 
 cajon = []
 global i
 i = 0
+global sumPerdida, sumPromedioDisponible
+global porcentajeClientesPerdidos, probabilidadDisponible, promedioDisponible
+sumPerdida = 0
+sumPromedioDisponible = 0.0
+porcentajeClientesPerdidos = 0.0
+probabilidadDisponible = 0.0
+promedioDisponible = 0.0
 
 cajon.append(canvas.create_rectangle(77, 40, 87,  65, fill='green'))
 cajon.append(canvas.create_rectangle(97, 40, 107, 65, fill='green'))
@@ -58,25 +61,29 @@ canvas.create_rectangle(70, 70, 193,  73, fill='black')
 def renueva_carros():
 	
 	global i
+	global sumPerdida, sumPromedioDisponible
 	
 	txtHora = "Horas: \t\t{0}".format(i+1)
 	
 	if(ncarros[i] > 6):
 		txtSeFueron = "Se fueron: \t{0}".format(ncarros[i] - 6)
-	if(ncarros[i] <= 6):
-		txtSeFueron = "Se fueron: \t0"
+		sumPerdida = sumPerdida + (ncarros[i]-6)
+	elif(ncarros[i] <= 6):
+		txtSeFueron = "Se fueron: \t0".format()
+		sumPromedioDisponible += (6-ncarros[i])/6
 
 	txtTiempoEstadia = "Tiempo de estadía: \t{0} minutos".format(round(tpromedio[i]))
+	
 	l0.set(txtHora)
 	l1.set(txtSeFueron)
 	l2.set(txtTiempoEstadia)
+	
 	time.sleep(1)
 	
 	for x in range(0,6):
 		canvas.itemconfigure(cajon[x], fill='white');
 	
 	time.sleep(1)
-	#print("renovando carros con i =",i)
 	
 	for x in range(0,ncarros[i]):
 		if(x >= 6):
@@ -84,9 +91,24 @@ def renueva_carros():
 		canvas.itemconfigure(cajon[x], fill='red');
 	
 	i = i+1
-	if(i != int(horas_activo)+1):
-		renueva_carros()
 
+	if(i != int(horas_activo)):
+		renueva_carros()
+	else:
+		global porcentajeClientesPerdidos, probabilidadDisponible, promedioDisponible
+	
+		porcentajeClientesPerdidos = ((sumPerdida/dt)*100)
+		probabilidadDisponible = (((dt-sumPerdida)/dt)*100)
+		promedioDisponible = ((sumPromedioDisponible/N)*100)
+
+		txtHora = "Clientes perdidos: {0}%".format(round(porcentajeClientesPerdidos,2))
+		txtSeFueron = "Lugares disponibles: {0}%".format(round(probabilidadDisponible,2))
+		txtTiempoEstadia = "Promedio de lugares disponibles: {0}%".format(round(promedioDisponible,2))
+
+		l0.set(txtHora)
+		l1.set(txtSeFueron)
+		l2.set(txtTiempoEstadia)
+	
 class SimulacionDeEstacionamiento ():
 	def __init__(self):
 		super(SimulacionDeEstacionamiento, self).__init__()
